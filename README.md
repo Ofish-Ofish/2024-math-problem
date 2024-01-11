@@ -20,7 +20,7 @@ Clone the repository and run the script:
 $ git clone https://github.com/Ofish-Ofish/2024-math-problem.git
 $ cd 2024-math-problem
 $ python math_solver.py
-
+```
 ##License
 This project is licensed under the MIT License. 
 

@@ -21,8 +21,8 @@ $ git clone https://github.com/Ofish-Ofish/2024-math-problem.git
 $ cd 2024-math-problem
 $ python math_solver.py
 ```
-##License
+## License
 This project is licensed under the MIT License. 
 
-##Results
+## Results
 The script outputs the discovered expressions for each counting number, along with the number of attempts and the time taken to find all solutions. Solutions are saved to a text file in the solutions directory.

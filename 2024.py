@@ -48,7 +48,7 @@ try:
                 newnums = [nums[0]+nums[1]+nums[2], nums[3]]
             elif getrandbits(1):
                 newnums = [nums[0]+nums[1], nums[2], nums[3]]
-            elif: getrandbits(2)
+            elif getrandbits(2):
                 newnums = [nums[0]+nums[1], nums[2]+nums[3]]
             else:
                 newnums = [nums[0]+nums[1]+nums[2]+nums[3]]
@@ -83,7 +83,7 @@ try:
             continue
 
         if val in looking_for:
-            if val not in fround_expressions.keys():
+            if val not in found_expressions.keys():
                 found_expressions[val] = expression
             else: #Solution has already been found, see if smaller.
                 if len(expression) < len(found_expressions[val]):
@@ -93,10 +93,10 @@ try:
             if not looking_for:
                 done = True
 except KeyboardInterrupt:
-    break
+    done = True
 
 with open(f'solutions/numsolver_solutions.txt', 'w') as f:
     f.write(("ALL!! (🙂🙂🙂)" if len(found_expressions[val].keys()) == len(looking_for) else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')
-    for i, expression in list(enumerate(found_expressions):
+    for i, expression in list(enumerate(found_expressions)):
         if expression != None: 
             f.write(expression + " = " + str(i) + '\n')

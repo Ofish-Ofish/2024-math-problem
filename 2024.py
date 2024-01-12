@@ -26,8 +26,15 @@ nums = ['2','0','2','4']
 ops = ['','f','d','s']
 signs = ['+','-','*','/','**',  '+','-','*']
 
+#Import already found solutions from numsolver_solutions.txt
+found_expressions = {}
+with open(f'solutions/numsolver_solutions.txt', 'r') as f:
+    expressions = f.readlines()
+    for expression in expressions:
+        solution, val = expression.split(' = ')
+        found_expressions[val] = solution
+#Done importing solutions
 looking_for = list(range(101))
-found_expressions = [None] * 101
 trycount = 0
 done = False
 try:
@@ -76,16 +83,20 @@ try:
             continue
 
         if val in looking_for:
-            looking_for.remove(val)
-            found_expressions[val] = expression
+            if val not in fround_expressions.keys():
+                found_expressions[val] = expression
+            else: #Solution has already been found, see if smaller.
+                if len(expression) < len(found_expressions[val]):
+                    found_expressions[val] = expression
+            
             print('found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for)))
             if not looking_for:
                 done = True
 except KeyboardInterrupt:
     break
 
-with open(f'solutions/numsolver_solutions-{solutionID}.txt', 'w') as f:
-    f.write(("ALL!! (🙂🙂🙂)" if not looking_for else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')
+with open(f'solutions/numsolver_solutions.txt', 'w') as f:
+    f.write(("ALL!! (🙂🙂🙂)" if len(found_expressions[val].keys()) == len(looking_for) else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')
     for i, expression in list(enumerate(found_expressions):
         if expression != None: 
             f.write(expression + " = " + str(i) + '\n')

@@ -2,17 +2,19 @@ from math import factorial, prod, sqrt
 from time import time
 from random import getrandbits, shuffle
 from functools import cache
-
+from os import system
+import re
+import mathparse
 start_time = time()
 
 @cache
 def fac(a):
-    if a > 100 or type(a) is not int: return
-    return factorial(a)
+    if a > 100 or type(a) is not int or a < 0: return 
+    return factorial(a) 
 
 @cache
 def dbfac(a):
-    if a > 100 or a < 0 or type(a) is not int: return
+    if a > 100 or a < 0 or type(a) is not int: return 
     start = 2 if a % 2 == 0 else 1
     return prod(range(start, a+1, 2))
 
@@ -23,6 +25,7 @@ def sq(a):
 
 @cache
 def e(a):
+
     return eval(a, {"f": fac, "s": sq, 'd': dbfac})
 
 nums = ['2','0','2','4']
@@ -40,10 +43,10 @@ with open(f'numsolver_solutions.txt', 'r') as f:
 #Done importing solutions
 looking_for = list(range(1,101))
 trycount = 0
-try:
-    while True:
-        trycount += 1
 
+while True:
+        trycount += 1
+        print(trycount)
         shuffle(nums)
         if not getrandbits(5):
             #randomly concatinate random pairs or triplets or all 4
@@ -76,17 +79,22 @@ try:
         
         expression = ''.join(newnums)
         _ = 0
-        
+
+##################################################### this is the part of the code that makes it only run when ctrl c is pressed
+########## to solve u have to make sure that the equation is vaild before using eval
         try:
+            print(expression)
             val = e(expression)
-            if(val - int(val) < 0.001):
+            if isinstance(val, int) and (val - int(val) < 0.001):
                 val = int(val)
             else:
                 continue
 
-        except:
+        except (SyntaxError):
             #print('this one had an error')
             continue
+
+########################################################
 
         if val in looking_for:
             if val not in found_expressions.keys():
@@ -95,8 +103,6 @@ try:
             elif len(expression) < len(found_expressions[val]): #Solution has already been found, see if smaller.
                 found_expressions[val] = expression
                 print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for) - len(found_expressions)))
-except KeyboardInterrupt:
-    pass
 
 with open(f'numsolver_solutions.txt', 'w') as f:
     f.write(("ALL!! (🙂🙂🙂)" if len(found_expressions.keys()) == len(looking_for) else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')

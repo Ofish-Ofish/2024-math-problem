@@ -38,7 +38,7 @@ with open(f'numsolver_solutions.txt', 'r') as f:
         solution, val = expression.split(' = ')
         found_expressions[int(val)] = solution
 #Done importing solutions
-looking_for = list(range(101))
+looking_for = list(range(1,101))
 trycount = 0
 try:
     while True:
@@ -94,7 +94,7 @@ try:
                 print('new solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds.')
             elif len(expression) < len(found_expressions[val]): #Solution has already been found, see if smaller.
                 found_expressions[val] = expression
-                print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for)))
+                print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for) - len(found_expressions)))
 except KeyboardInterrupt:
     pass
 

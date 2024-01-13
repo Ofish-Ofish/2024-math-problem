@@ -105,4 +105,4 @@ with open(f'numsolver_solutions.txt', 'w') as f:
     found_expressions = {key: value for key, value in sorted(found_expressions.items())}
     for val, expression in sorted(found_expressions.items()):
         f.write(expression + " = " + str(val)+'\n')
-print("Successfullly saved solutions to numsolver_solutions.txt")
+print("Successfully saved solutions to numsolver_solutions.txt")

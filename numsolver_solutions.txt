@@ -1,4 +1,4 @@
-91 solutions found after 44781 tries and 76.88 seconds!
+91 solutions found after 5962 tries and 4.41 seconds!
 242**0 = 1
 2+42*0 = 2
 24**0+2 = 3

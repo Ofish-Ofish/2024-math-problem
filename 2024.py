@@ -43,8 +43,8 @@ with open(f'numsolver_solutions.txt', 'r') as f:
 #Done importing solutions
 looking_for = list(range(1,101))
 trycount = 0
-
-while True:
+try:
+    while True:
         trycount += 1
         print(trycount)
         shuffle(nums)
@@ -83,14 +83,14 @@ while True:
 ##################################################### this is the part of the code that makes it only run when ctrl c is pressed
 ########## to solve u have to make sure that the equation is vaild before using eval
         try:
-            print(expression)
+            # print(expression)
             val = e(expression)
             if isinstance(val, int) and (val - int(val) < 0.001):
                 val = int(val)
             else:
                 continue
 
-        except (SyntaxError):
+        except:
             #print('this one had an error')
             continue
 
@@ -104,6 +104,8 @@ while True:
                 found_expressions[val] = expression
                 print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for) - len(found_expressions)))
 
+except KeyboardInterrupt:
+    pass
 with open(f'numsolver_solutions.txt', 'w') as f:
     f.write(("ALL!! (🙂🙂🙂)" if len(found_expressions.keys()) == len(looking_for) else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')
     #Sort found_expressions by their keys

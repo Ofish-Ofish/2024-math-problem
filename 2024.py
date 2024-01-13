@@ -2,7 +2,6 @@ from math import factorial, prod, sqrt
 from time import time
 from random import getrandbits, shuffle
 from functools import cache
-import os
 
 start_time = time()
 
@@ -25,14 +24,13 @@ def sq(a):
 @cache
 def e(a):
     return eval(a, {"f": fac, "s": sq, 'd': dbfac})
-        
+
 nums = ['2','0','2','4']
 ops = ['','f','d','s']
 signs = ['+','-','*','/','**',  '+','-','*']
 
 #Import already found solutions from numsolver_solutions.txt
 found_expressions = {}
-os.chdir("./solutions")
 with open(f'numsolver_solutions.txt', 'r') as f:
     expressions = f.readlines()
     expressions.pop(0) #Remove header line

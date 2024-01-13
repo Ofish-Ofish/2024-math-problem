@@ -5,6 +5,7 @@ from functools import cache
 from os import system
 import re
 import mathparse
+from time import sleep as slp
 start_time = time()
 
 FACTORIAL_LIMIT = 10
@@ -29,7 +30,6 @@ def sq(a):
 
 @cache
 def e(a):
-    print(a)
     pattern = re.compile(r'\*\*')
     matches = pattern.findall(a)
     # print(matches)
@@ -60,7 +60,7 @@ trycount = 0
 try:
     while True:
         trycount += 1
-        print(trycount)
+        system("clr")
         shuffle(nums)
         if not getrandbits(5):
             #randomly concatinate random pairs or triplets or all 4
@@ -114,6 +114,7 @@ try:
             if val not in found_expressions.keys():
                 found_expressions[val] = expression
                 print('new solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds.')
+                slp(1)
             elif len(expression) < len(found_expressions[val]): #Solution has already been found, see if smaller.
                 found_expressions[val] = expression
                 print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for) - len(found_expressions)))

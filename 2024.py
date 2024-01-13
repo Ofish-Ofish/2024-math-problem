@@ -7,14 +7,18 @@ import re
 import mathparse
 start_time = time()
 
+FACTORIAL_LIMIT = 10
+DOUBLE_FACTORIAL_LIMIT = 10
+LENGHT_OF_N_POW_Y_IN_X_POW_N_POW_Y = 4
+
 @cache
 def fac(a):
-    if a > 100 or type(a) is not int or a < 0: return 
+    if a > 100 or type(a) is not int or a < 0 or a > FACTORIAL_LIMIT : return 
     return factorial(a) 
 
 @cache
 def dbfac(a):
-    if a > 100 or a < 0 or type(a) is not int: return 
+    if a > 100 or a < 0 or type(a) is not int or a > DOUBLE_FACTORIAL_LIMIT : return 
     start = 2 if a % 2 == 0 else 1
     return prod(range(start, a+1, 2))
 
@@ -25,12 +29,22 @@ def sq(a):
 
 @cache
 def e(a):
-
+    print(a)
+    pattern = re.compile(r'\*\*')
+    matches = pattern.findall(a)
+    # print(matches)
+    if len(matches) > 1:
+        aList = a.split("**")
+        # print(aList)
+        ew = eval(f"{aList[1]}**{aList[2]}")
+        if len(ew) > LENGHT_OF_N_POW_Y_IN_X_POW_N_POW_Y:
+            return 
+        
     return eval(a, {"f": fac, "s": sq, 'd': dbfac})
 
 nums = ['2','0','2','4']
 ops = ['','f','d','s']
-signs = ['+','-','*','/','**',  '+','-','*']
+signs = ['+','-','*','/','**', '+','-','*']
 
 #Import already found solutions from numsolver_solutions.txt
 found_expressions = {}

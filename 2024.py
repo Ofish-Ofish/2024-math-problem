@@ -40,9 +40,8 @@ with open(f'numsolver_solutions.txt', 'r') as f:
 #Done importing solutions
 looking_for = list(range(101))
 trycount = 0
-done = False
 try:
-    while not done:
+    while True:
         trycount += 1
 
         shuffle(nums)
@@ -97,7 +96,7 @@ try:
                 found_expressions[val] = expression
                 print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for)))
 except KeyboardInterrupt:
-    done = True
+    pass
 
 with open(f'numsolver_solutions.txt', 'w') as f:
     f.write(("ALL!! (🙂🙂🙂)" if len(found_expressions.keys()) == len(looking_for) else str(len(found_expressions))) + ' solutions found after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds!\n')

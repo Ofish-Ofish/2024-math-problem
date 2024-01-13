@@ -17,7 +17,7 @@ The script utilizes the built-in `math` module for mathematical functions, the `
 Clone the repository and run the script:
 
 ```bash
-$ git clone -b adams-changes https://github.com/Ofish-Ofish/2024-math-problem.git
+$ git clone https://github.com/Ofish-Ofish/2024-math-problem.git
 $ cd 2024-math-problem
 $ python math_solver.py
 ```

@@ -60,7 +60,7 @@ trycount = 0
 try:
     while True:
         trycount += 1
-        system("clr")
+        print(trycount)
         shuffle(nums)
         if not getrandbits(5):
             #randomly concatinate random pairs or triplets or all 4
@@ -118,6 +118,7 @@ try:
             elif len(expression) < len(found_expressions[val]): #Solution has already been found, see if smaller.
                 found_expressions[val] = expression
                 print('shorter solution found', val, '=', expression, '           after ' + str(trycount) + ' tries and ' + str(round(time() - start_time, 2)) + ' seconds. Amount left: ' + str(len(looking_for) - len(found_expressions)))
+        
 
 except KeyboardInterrupt:
     pass

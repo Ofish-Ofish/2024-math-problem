@@ -28,6 +28,7 @@ def sq(a):
     if a < 0: return #Theres a chance a non-intiger could be used, so we might have to remove this.
     return sqrt(a)
 
+
 @cache
 def e(a):
     pattern = re.compile(r'\*\*')

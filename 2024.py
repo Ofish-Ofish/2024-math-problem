@@ -43,7 +43,7 @@ def e(a):
         
     return eval(a, {"f": fac, "s": sq, 'd': dbfac})
 
-nums = ['2','0','2','4']
+nums = ['2','0','2','5']
 ops = ['','f','d','s']
 signs = ['+','-','*','/','**', '+','-','*']
 
@@ -51,10 +51,11 @@ signs = ['+','-','*','/','**', '+','-','*']
 found_expressions = {}
 with open(f'numsolver_solutions.txt', 'r') as f:
     expressions = f.readlines()
-    expressions.pop(0) #Remove header line
-    for expression in expressions:
-        solution, val = expression.split(' = ')
-        found_expressions[int(val)] = solution
+    if len(expressions) > 3:
+        expressions.pop(0) #Remove header line
+        for expression in expressions:
+            solution, val = expression.split(' = ')
+            found_expressions[int(val)] = solution
 #Done importing solutions
 looking_for = list(range(1,101))
 trycount = 0
